@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="YouGradeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="YouGradeModelStoreContainer">
+          <EntitySet Name="Alternative" EntityType="YouGradeModel.Store.Alternative" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Answer" EntityType="YouGradeModel.Store.Answer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ExamDef" EntityType="YouGradeModel.Store.ExamDef" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ExamTake" EntityType="YouGradeModel.Store.ExamTake" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QuestionDef" EntityType="YouGradeModel.Store.QuestionDef" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="YouGradeModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Alternative_QuestionDef" Association="YouGradeModel.Store.FK_Alternative_QuestionDef">
+            <End Role="QuestionDef" EntitySet="QuestionDef" />
+            <End Role="Alternative" EntitySet="Alternative" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answer_Alternative" Association="YouGradeModel.Store.FK_Answer_Alternative">
+            <End Role="Alternative" EntitySet="Alternative" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answer_ExamTake" Association="YouGradeModel.Store.FK_Answer_ExamTake">
+            <End Role="ExamTake" EntitySet="ExamTake" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExamTake_ExamDef" Association="YouGradeModel.Store.FK_ExamTake_ExamDef">
+            <End Role="ExamDef" EntitySet="ExamDef" />
+            <End Role="ExamTake" EntitySet="ExamTake" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExamTake_User" Association="YouGradeModel.Store.FK_ExamTake_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ExamTake" EntitySet="ExamTake" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionDef_ExamDef" Association="YouGradeModel.Store.FK_QuestionDef_ExamDef">
+            <End Role="ExamDef" EntitySet="ExamDef" />
+            <End Role="QuestionDef" EntitySet="QuestionDef" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Alternative">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="Id" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="Text" Type="varchar" Nullable="false" MaxLength="1000" />
+          <Property Name="Correct" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="ExamTakeId" />
+            <PropertyRef Name="QuestionId" />
+            <PropertyRef Name="AlternativeId" />
+          </Key>
+          <Property Name="ExamTakeId" Type="int" Nullable="false" />
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="AlternativeId" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="IsChecked" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExamDef">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="MinimumOfCorrectAnswers" Type="int" Nullable="false" />
+          <Property Name="Duration" Type="time" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExamTake">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ExamId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="StartDateTime" Type="datetime" Nullable="false" />
+          <Property Name="Duration" Type="time" Nullable="false" />
+          <Property Name="Grade" Type="int" Nullable="false" />
+          <Property Name="Status" Type="char" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="QuestionDef">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ExamId" Type="int" Nullable="false" />
+          <Property Name="Text" Type="varchar" Nullable="false" MaxLength="2000" />
+          <Property Name="Url" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="StartSeconds" Type="int" Nullable="false" />
+          <Property Name="Explanation" Type="varchar" Nullable="false" MaxLength="2000" />
+          <Property Name="Mark" Type="varchar" Nullable="false" MaxLength="2000" />
+          <Property Name="IsMultiSelect" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Firstname" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Lastname" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Alternative_QuestionDef">
+          <End Role="QuestionDef" Type="YouGradeModel.Store.QuestionDef" Multiplicity="1" />
+          <End Role="Alternative" Type="YouGradeModel.Store.Alternative" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionDef">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alternative">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answer_Alternative">
+          <End Role="Alternative" Type="YouGradeModel.Store.Alternative" Multiplicity="1" />
+          <End Role="Answer" Type="YouGradeModel.Store.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alternative">
+              <PropertyRef Name="QuestionId" />
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="QuestionId" />
+              <PropertyRef Name="AlternativeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answer_ExamTake">
+          <End Role="ExamTake" Type="YouGradeModel.Store.ExamTake" Multiplicity="1" />
+          <End Role="Answer" Type="YouGradeModel.Store.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExamTake">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="ExamTakeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExamTake_ExamDef">
+          <End Role="ExamDef" Type="YouGradeModel.Store.ExamDef" Multiplicity="1" />
+          <End Role="ExamTake" Type="YouGradeModel.Store.ExamTake" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExamDef">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExamTake">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExamTake_User">
+          <End Role="User" Type="YouGradeModel.Store.User" Multiplicity="1" />
+          <End Role="ExamTake" Type="YouGradeModel.Store.ExamTake" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExamTake">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionDef_ExamDef">
+          <End Role="ExamDef" Type="YouGradeModel.Store.ExamDef" Multiplicity="1" />
+          <End Role="QuestionDef" Type="YouGradeModel.Store.QuestionDef" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExamDef">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionDef">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="YouGradeModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="YouGradeEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Alternative" EntityType="YouGradeModel.Alternative" />
+          <EntitySet Name="Answer" EntityType="YouGradeModel.Answer" />
+          <EntitySet Name="ExamDef" EntityType="YouGradeModel.ExamDef" />
+          <EntitySet Name="ExamTake" EntityType="YouGradeModel.ExamTake" />
+          <EntitySet Name="QuestionDef" EntityType="YouGradeModel.QuestionDef" />
+          <EntitySet Name="User" EntityType="YouGradeModel.User" />
+          <AssociationSet Name="FK_Alternative_QuestionDef" Association="YouGradeModel.FK_Alternative_QuestionDef">
+            <End Role="QuestionDef" EntitySet="QuestionDef" />
+            <End Role="Alternative" EntitySet="Alternative" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answer_Alternative" Association="YouGradeModel.FK_Answer_Alternative">
+            <End Role="Alternative" EntitySet="Alternative" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answer_ExamTake" Association="YouGradeModel.FK_Answer_ExamTake">
+            <End Role="ExamTake" EntitySet="ExamTake" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExamTake_ExamDef" Association="YouGradeModel.FK_ExamTake_ExamDef">
+            <End Role="ExamDef" EntitySet="ExamDef" />
+            <End Role="ExamTake" EntitySet="ExamTake" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionDef_ExamDef" Association="YouGradeModel.FK_QuestionDef_ExamDef">
+            <End Role="ExamDef" EntitySet="ExamDef" />
+            <End Role="QuestionDef" EntitySet="QuestionDef" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExamTake_User" Association="YouGradeModel.FK_ExamTake_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ExamTake" EntitySet="ExamTake" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Alternative">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="QuestionId" Nullable="false" />
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Text" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Correct" Nullable="false" />
+          <NavigationProperty Name="QuestionDef" Relationship="YouGradeModel.FK_Alternative_QuestionDef" FromRole="Alternative" ToRole="QuestionDef" />
+          <NavigationProperty Name="Answer" Relationship="YouGradeModel.FK_Answer_Alternative" FromRole="Alternative" ToRole="Answer" />
+        </EntityType>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="ExamTakeId" />
+            <PropertyRef Name="QuestionId" />
+            <PropertyRef Name="AlternativeId" />
+          </Key>
+          <Property Type="Int32" Name="ExamTakeId" Nullable="false" />
+          <Property Type="Int32" Name="QuestionId" Nullable="false" />
+          <Property Type="String" Name="AlternativeId" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="IsChecked" Nullable="false" />
+          <NavigationProperty Name="Alternative" Relationship="YouGradeModel.FK_Answer_Alternative" FromRole="Answer" ToRole="Alternative" />
+          <NavigationProperty Name="ExamTake" Relationship="YouGradeModel.FK_Answer_ExamTake" FromRole="Answer" ToRole="ExamTake" />
+        </EntityType>
+        <EntityType Name="ExamDef">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="MinimumOfCorrectAnswers" Nullable="false" />
+          <Property Type="Time" Name="Duration" Nullable="false" />
+          <NavigationProperty Name="ExamTake" Relationship="YouGradeModel.FK_ExamTake_ExamDef" FromRole="ExamDef" ToRole="ExamTake" />
+          <NavigationProperty Name="QuestionDef" Relationship="YouGradeModel.FK_QuestionDef_ExamDef" FromRole="ExamDef" ToRole="QuestionDef" />
+        </EntityType>
+        <EntityType Name="ExamTake">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ExamId" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="DateTime" Name="StartDateTime" Nullable="false" />
+          <Property Type="Time" Name="Duration" Nullable="false" />
+          <Property Type="Int32" Name="Grade" Nullable="false" />
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Answer" Relationship="YouGradeModel.FK_Answer_ExamTake" FromRole="ExamTake" ToRole="Answer" />
+          <NavigationProperty Name="ExamDef" Relationship="YouGradeModel.FK_ExamTake_ExamDef" FromRole="ExamTake" ToRole="ExamDef" />
+          <NavigationProperty Name="User" Relationship="YouGradeModel.FK_ExamTake_User" FromRole="ExamTake" ToRole="User" />
+        </EntityType>
+        <EntityType Name="QuestionDef">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ExamId" Nullable="false" />
+          <Property Type="String" Name="Text" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Url" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Explanation" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Mark" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsMultiSelect" Nullable="false" />
+          <NavigationProperty Name="Alternative" Relationship="YouGradeModel.FK_Alternative_QuestionDef" FromRole="QuestionDef" ToRole="Alternative" />
+          <NavigationProperty Name="ExamDef" Relationship="YouGradeModel.FK_QuestionDef_ExamDef" FromRole="QuestionDef" ToRole="ExamDef" />
+          <Property Type="Int32" Name="StartSeconds" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Login" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Firstname" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Lastname" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ExamTake" Relationship="YouGradeModel.FK_ExamTake_User" FromRole="User" ToRole="ExamTake" />
+        </EntityType>
+        <Association Name="FK_Alternative_QuestionDef">
+          <End Type="YouGradeModel.QuestionDef" Role="QuestionDef" Multiplicity="1" />
+          <End Type="YouGradeModel.Alternative" Role="Alternative" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionDef">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alternative">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answer_Alternative">
+          <End Type="YouGradeModel.Alternative" Role="Alternative" Multiplicity="1" />
+          <End Type="YouGradeModel.Answer" Role="Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alternative">
+              <PropertyRef Name="QuestionId" />
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="QuestionId" />
+              <PropertyRef Name="AlternativeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answer_ExamTake">
+          <End Type="YouGradeModel.ExamTake" Role="ExamTake" Multiplicity="1" />
+          <End Type="YouGradeModel.Answer" Role="Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExamTake">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="ExamTakeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExamTake_ExamDef">
+          <End Type="YouGradeModel.ExamDef" Role="ExamDef" Multiplicity="1" />
+          <End Type="YouGradeModel.ExamTake" Role="ExamTake" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExamDef">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExamTake">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionDef_ExamDef">
+          <End Type="YouGradeModel.ExamDef" Role="ExamDef" Multiplicity="1" />
+          <End Type="YouGradeModel.QuestionDef" Role="QuestionDef" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExamDef">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionDef">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExamTake_User">
+          <End Type="YouGradeModel.User" Role="User" Multiplicity="1" />
+          <End Type="YouGradeModel.ExamTake" Role="ExamTake" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExamTake">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="YouGradeModelStoreContainer" CdmEntityContainer="YouGradeEntities" >
+          <EntitySetMapping Name="Alternative">
+            <EntityTypeMapping TypeName="YouGradeModel.Alternative">
+              <MappingFragment StoreEntitySet="Alternative">
+                <ScalarProperty Name="Correct" ColumnName="Correct" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Answer">
+            <EntityTypeMapping TypeName="YouGradeModel.Answer">
+              <MappingFragment StoreEntitySet="Answer">
+                <ScalarProperty Name="IsChecked" ColumnName="IsChecked" />
+                <ScalarProperty Name="AlternativeId" ColumnName="AlternativeId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="ExamTakeId" ColumnName="ExamTakeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExamDef">
+            <EntityTypeMapping TypeName="YouGradeModel.ExamDef">
+              <MappingFragment StoreEntitySet="ExamDef">
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="MinimumOfCorrectAnswers" ColumnName="MinimumOfCorrectAnswers" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExamTake">
+            <EntityTypeMapping TypeName="YouGradeModel.ExamTake">
+              <MappingFragment StoreEntitySet="ExamTake">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionDef">
+            <EntityTypeMapping TypeName="YouGradeModel.QuestionDef">
+              <MappingFragment StoreEntitySet="QuestionDef">
+                <ScalarProperty Name="StartSeconds" ColumnName="StartSeconds" />
+                <ScalarProperty Name="IsMultiSelect" ColumnName="IsMultiSelect" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="YouGradeModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="YouGrade" ZoomLevel="94" >
+        <EntityTypeShape EntityType="YouGradeModel.Alternative" Width="1.5" PointX="5.125" PointY="4" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="YouGradeModel.Answer" Width="1.5" PointX="5" PointY="0.875" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="YouGradeModel.ExamDef" Width="1.5" PointX="0.75" PointY="3.25" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="YouGradeModel.ExamTake" Width="1.5" PointX="2.875" PointY="0.625" Height="2.9417936197916656" />
+        <EntityTypeShape EntityType="YouGradeModel.QuestionDef" Width="1.5" PointX="3.125" PointY="4.25" Height="2.9417936197916656" />
+        <EntityTypeShape EntityType="YouGradeModel.User" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906249996" />
+        <AssociationConnector Association="YouGradeModel.FK_Alternative_QuestionDef" >
+          <ConnectorPoint PointX="4.625" PointY="5.2112939453125" />
+          <ConnectorPoint PointX="5.125" PointY="5.2112939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="YouGradeModel.FK_Answer_Alternative" >
+          <ConnectorPoint PointX="5.8125" PointY="4" />
+          <ConnectorPoint PointX="5.8125" PointY="3.0475878906249996" />
+        </AssociationConnector>
+        <AssociationConnector Association="YouGradeModel.FK_Answer_ExamTake" >
+          <ConnectorPoint PointX="4.375" PointY="1.9612939453124998" />
+          <ConnectorPoint PointX="5" PointY="1.9612939453124998" />
+        </AssociationConnector>
+        <AssociationConnector Association="YouGradeModel.FK_ExamTake_ExamDef" >
+          <ConnectorPoint PointX="2.25" PointY="3.4083968098958328" />
+          <ConnectorPoint PointX="2.875" PointY="3.4083968098958328" />
+        </AssociationConnector>
+        <AssociationConnector Association="YouGradeModel.FK_QuestionDef_ExamDef" >
+          <ConnectorPoint PointX="2.25" PointY="4.9324446614583328" />
+          <ConnectorPoint PointX="3.125" PointY="4.9324446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="YouGradeModel.FK_ExamTake_User" >
+          <ConnectorPoint PointX="2.25" PointY="1.8362939453124998" />
+          <ConnectorPoint PointX="2.875" PointY="1.8362939453124998" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

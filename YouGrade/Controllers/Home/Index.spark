@@ -1,0 +1,64 @@
+﻿<viewdata model="YouGrade.Controllers.Home.Models.IndexOutput" />
+<content:TitleContent>
+    YouGrade
+</content:TitleContent>
+<content:ScriptsContent>
+    <script type="text/javascript" src="/Scripts/YouGrade.js"></script>
+    <script type="text/javascript">
+        YouGrade.getQuestionUrl = '${Urls.UrlFor(new YouGrade.Controllers.Home.Models.GetQuestionQueryInput())}';
+        YouGrade.moveToPreviousQuestionUrl = '${Urls.UrlFor(new YouGrade.Controllers.Home.Models.MoveToPreviousQuestionQueryInput())}';
+        YouGrade.moveToNextQuestionUrl = '${Urls.UrlFor(new YouGrade.Controllers.Home.Models.MoveToNextQuestionQueryInput())}';
+        YouGrade.saveAnswerUrl = '${Urls.UrlFor(new YouGrade.Controllers.Home.Models.SaveAnswerCommandInput())}';
+        YouGrade.endExamUrl = '${Urls.UrlFor(new YouGrade.Controllers.Home.Models.EndExamQueryInput())}';
+    </script>
+    <script type="text/javascript">
+        YouGrade.configVideo();
+        $(document).ready(function () {
+            YouGrade.init();
+        });
+    </script>
+</content:ScriptsContent>
+<content:Header>
+<header />
+</content:Header>
+<content:MainContent>
+    <!-- ui-dialog -->    <div id="endExamDialog" title="${Model.Exam.Name} - Results" style="z-index:1000;">                <p>Your Result: <span id="yourResult"></span></p>                <div id="progressbar"></div>            </div>
+    <div id="background">
+        <img src="/Content/Images/Paper.jpg" class="stretch" alt="" />
+    </div>
+
+    <div class="leftPanel">
+        &nbsp;<div id="videoDiv" style="z-index: -1;">
+            You need Flash player 8+ and JavaScript enabled to view this video.
+        </div>
+        <div class="buttons">
+            <div class="button play"> 
+                <a href="#" id="dialog_link" class="ui-state-default ui-corner-all">
+                    Play
+                </a>
+            </div>
+            <div class="button previous"> 
+                <a href="#" id="dialog_link" class="ui-state-default ui-corner-all">
+                    Previous
+                </a>
+            </div>
+            <div class="button next"> 
+                <a href="#" id="dialog_link" class="ui-state-default ui-corner-all">
+                    Next
+                </a>
+            </div>
+            <div class="button end"> 
+                <a href="#" id="dialog_link" class="ui-state-default ui-corner-all">
+                    End
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="rightPanel">
+        <div class="questionTitle"><u>Question 1</u></div>
+        <div class="questionText">
+        </div>
+    </div>
+    <div class="alternatives">
+    </div>
+</content:MainContent>

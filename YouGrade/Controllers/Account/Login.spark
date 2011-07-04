@@ -1,0 +1,31 @@
+﻿<viewdata model="YouGrade.Controllers.Account.Models.LoginModel" />
+<content:ScriptsContent>
+<script type="text/javascript" src="/Scripts/jquery.validate.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("form").validate();
+    });
+</script>
+</content:ScriptsContent>
+<content:MainContent>
+${this.FormFor(new YouGrade.Controllers.Account.Models.LoginCommandModel())}
+<fieldset>
+<legend>YouGrade Log In</legend>
+<div>
+${this.LabelFor(model => model.UserName)}
+</div>
+<div>
+${this.InputFor(model => model.UserName)}
+</div>
+<div>
+${this.LabelFor(model => model.Password)}
+</div>
+<div>
+${this.InputFor(model => model.Password)}
+</div>
+<div>
+<input type="submit" value="Login" />
+</div>
+</fieldset>
+${this.EndForm()}
+</content:MainContent>
