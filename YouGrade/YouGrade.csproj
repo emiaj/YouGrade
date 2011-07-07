@@ -115,8 +115,20 @@
     <Content Include="Content\Images\ui-icons_ffd27a_256x240.png" />
     <Content Include="Content\Images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\Images\YouGrade.PNG" />
-    <Content Include="Content\jquery-ui-1.8.13.custom.css" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\scripts\jquery-1.5.1-vsdoc.js" />
+    <Content Include="Content\scripts\jquery-1.5.1.js" />
+    <Content Include="Content\scripts\jquery-1.5.1.min.js" />
+    <Content Include="Content\scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Content\scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Content\scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Content\scripts\jquery.validate.js" />
+    <Content Include="Content\scripts\jquery.validate.min.js" />
+    <Content Include="Content\scripts\modernizr-1.7.js" />
+    <Content Include="Content\scripts\modernizr-1.7.min.js" />
+    <Content Include="Content\scripts\swfobject.js" />
+    <Content Include="Content\scripts\YouGrade.js" />
+    <Content Include="Content\styles\jquery-ui-1.8.13.custom.css" />
+    <Content Include="Content\styles\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -146,19 +158,6 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="DBScripts\Inserts.sql" />
     <Content Include="DBScripts\Tables.sql" />
-    <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.5.1.js" />
-    <Content Include="Scripts\jquery-1.5.1.min.js" />
-    <Content Include="Scripts\jquery-ui-1.8.11.js" />
-    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
-    <Content Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\modernizr-1.7.js" />
-    <Content Include="Scripts\modernizr-1.7.min.js" />
-    <Content Include="Scripts\swfobject.js" />
-    <Content Include="Scripts\YouGrade.js" />
-    <Content Include="Styles\Site.css" />
     <Content Include="Global.asax" />
     <None Include="Controllers\Account\Login.spark" />
     <None Include="Controllers\Home\_header.spark" />
@@ -170,6 +169,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="YouGrade.script.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activators\AutoMapperActivator.cs" />

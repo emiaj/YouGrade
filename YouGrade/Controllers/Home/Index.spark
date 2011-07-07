@@ -2,8 +2,10 @@
 <content:TitleContent>
     YouGrade
 </content:TitleContent>
+#this.Script("exam");
+<content:ScriptImports>
+</content:ScriptImports>
 <content:ScriptsContent>
-    <script type="text/javascript" src="/Scripts/YouGrade.js"></script>
     <script type="text/javascript">
         YouGrade.getQuestionUrl = '${Urls.UrlFor(new YouGrade.Controllers.Home.Models.GetQuestionQueryInput())}';
         YouGrade.moveToPreviousQuestionUrl = '${Urls.UrlFor(new YouGrade.Controllers.Home.Models.MoveToPreviousQuestionQueryInput())}';

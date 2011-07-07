@@ -1,6 +1,8 @@
 ﻿<viewdata model="YouGrade.Controllers.Account.Models.LoginModel" />
+<content:ScriptImports>
+    #this.Script("login");
+</content:ScriptImports>
 <content:ScriptsContent>
-<script type="text/javascript" src="/Scripts/jquery.validate.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("form").validate();
