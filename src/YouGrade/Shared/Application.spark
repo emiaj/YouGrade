@@ -1,0 +1,46 @@
+﻿<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>
+      YouGrade ::: <use:titlecontent/>
+    </title>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    ${this.WriteCssTags()}
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <navigation />
+        </div>
+        <div class="span12">
+          <div class="content">
+            <div class="page-header">
+              <h1>
+                <use:titlecontent/>
+                <small>
+                  <use:moduledescription/>
+                </small>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="span12">
+          <use:view>Content goes here</use:view>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="span9 offset3">
+          <footerview />
+        </div>
+      </div>
+    </div>
+    ${this.WriteScriptTags()}
+  </body>
+</html>

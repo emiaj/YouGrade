@@ -125,7 +125,9 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Shared\bindings.xml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -149,8 +151,10 @@
   <ItemGroup>
     <None Include="Features\Home\Home.spark" />
     <None Include="Features\LogIn\LogIn.spark" />
+    <None Include="Shared\Application.spark" />
     <None Include="Shared\LogInMaster.spark" />
     <None Include="Shared\_footerview.spark" />
+    <None Include="Shared\_navigation.spark" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\Authentication\" />

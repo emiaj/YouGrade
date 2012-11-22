@@ -1,0 +1,6 @@
+﻿<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">YouGrade</a>
+    <menu key="Navigation:Default"/>
+  </div>
+</div>
