@@ -38,6 +38,8 @@ namespace YouGrade
                     {
                         x.ForMenu(StringToken.FromKeyString("Navigation:Default", "Default"));
                         x.Add += MenuNode.ForInput<HomeInputModel>(StringToken.FromKeyString("Navigation:Default:Home", "Home"));
+
+                        x.ForMenu(StringToken.FromKeyString("Navigation:Profile", "Profile"));
                         x.Add += MenuNode.ForInput<LogoutRequest>("Log Out");
                     });
 

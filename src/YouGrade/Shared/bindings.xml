@@ -19,6 +19,13 @@
     ]]>
   </element>
   <element name="menu">
+    new FubuMVC.TwitterBootstrap.Menus.MenuTag(this.Get[[FubuMVC.Navigation.INavigationService]]().MenuFor(FubuLocalization.StringToken.FromKeyString("@key"))).RemoveClass("nav").AddClass("@class")
+  </element>
+  <element name="menu">
     new FubuMVC.TwitterBootstrap.Menus.MenuTag(this.Get[[FubuMVC.Navigation.INavigationService]]().MenuFor(FubuLocalization.StringToken.FromKeyString("@key")))
   </element>
+  <element name="service">
+    this.Get[[@type]]().@property
+  </element>
+
 </bindings>

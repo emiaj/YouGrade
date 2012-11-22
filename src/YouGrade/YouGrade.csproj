@@ -123,6 +123,7 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="content\styles\Application.css" />
     <Content Include="Global.asax" />
     <Content Include="Shared\bindings.xml" />
     <Content Include="Web.config">

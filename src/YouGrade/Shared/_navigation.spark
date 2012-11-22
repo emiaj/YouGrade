@@ -1,6 +1,20 @@
 ﻿<div class="navbar">
-  <div class="navbar-inner">
+  <div class="navbar-inner navbar-fixed-top">
     <a class="brand" href="#">YouGrade</a>
     <menu key="Navigation:Default"/>
+    <ul class="nav pull-right">
+      <li>
+        <a href="javascript:void(0);">
+          Logged in as
+          <service type="FubuMVC.Core.Security.ISecurityContext" property="CurrentIdentity.Name"/>
+        </a>
+      </li>
+      <li class="dropdown  active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <b class="caret"></b>
+          <menu key="Navigation:Profile" class="dropdown-menu"/>
+        </a>
+      </li>
+    </ul>    
   </div>
 </div>
