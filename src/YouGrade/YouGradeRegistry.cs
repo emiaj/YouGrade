@@ -1,5 +1,6 @@
 ﻿using FubuMVC.Authentication;
 using FubuMVC.Core;
+using FubuMVC.Core.UI;
 using YouGrade.Features.Home;
 using YouGrade.Policies.Asset;
 
@@ -28,6 +29,12 @@ namespace YouGrade
                 });
 
             Import<ApplyAuthentication>(x => x.Exclude(chain => chain.Route != null && chain.Route.Pattern != null && chain.Route.Pattern.StartsWith("_")));
+
+            Import<DefaultHtmlConventions>(
+                x =>
+                x.Editors.If(r => r.Accessor.InnerProperty.Name.Contains("Password"))
+                .ModifyWith(r => r.CurrentTag.Attr("type", "password")));
+
         }
     }
 }

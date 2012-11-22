@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<bindings>
+  <element name = "form">
+    <start>this.FormFor(@model)</start>
+    <end>this.EndForm()</end>
+  </element>
+  <element name = "form">
+    <start>this.FormFor[[@type]]()</start>
+    <end>this.EndForm()</end>
+  </element>
+  <element name="editor">
+    <![CDATA[
+      "<div class='control-group'>" + 
+        this.LabelFor(x=>x.@for).AddClass("control-label") + 
+        "<div class='controls'>" +
+          this.InputFor(x=>x.@for) +
+        "</div>" +     
+      "</div>"    
+    ]]>
+  </element>
+</bindings>
