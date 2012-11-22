@@ -93,71 +93,6 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\YouGrade.mdf" />
-    <Content Include="App_Data\YouGrade_log.ldf">
-      <DependentUpon>YouGrade.mdf</DependentUpon>
-    </Content>
-    <Content Include="Content\Images\Buttons.PNG" />
-    <Content Include="Content\Images\Buttons2.png" />
-    <Content Include="Content\Images\Paper.jpg" />
-    <Content Include="Content\Images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
-    <Content Include="Content\Images\ui-bg_diagonals-thick_20_666666_40x40.png" />
-    <Content Include="Content\Images\ui-bg_flat_10_000000_40x100.png" />
-    <Content Include="Content\Images\ui-bg_glass_100_f6f6f6_1x400.png" />
-    <Content Include="Content\Images\ui-bg_glass_100_fdf5ce_1x400.png" />
-    <Content Include="Content\Images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\Images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
-    <Content Include="Content\Images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
-    <Content Include="Content\Images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
-    <Content Include="Content\Images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\Images\ui-icons_228ef1_256x240.png" />
-    <Content Include="Content\Images\ui-icons_ef8c08_256x240.png" />
-    <Content Include="Content\Images\ui-icons_ffd27a_256x240.png" />
-    <Content Include="Content\Images\ui-icons_ffffff_256x240.png" />
-    <Content Include="Content\Images\YouGrade.PNG" />
-    <Content Include="Content\scripts\jquery-1.5.1-vsdoc.js" />
-    <Content Include="Content\scripts\jquery-1.5.1.js" />
-    <Content Include="Content\scripts\jquery-1.5.1.min.js" />
-    <Content Include="Content\scripts\jquery-ui-1.8.11.js" />
-    <Content Include="Content\scripts\jquery-ui-1.8.11.min.js" />
-    <Content Include="Content\scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Content\scripts\jquery.validate.js" />
-    <Content Include="Content\scripts\jquery.validate.min.js" />
-    <Content Include="Content\scripts\modernizr-1.7.js" />
-    <Content Include="Content\scripts\modernizr-1.7.min.js" />
-    <Content Include="Content\scripts\swfobject.js" />
-    <Content Include="Content\scripts\YouGrade.js" />
-    <Content Include="Content\styles\jquery-ui-1.8.13.custom.css" />
-    <Content Include="Content\styles\Site.css" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
-    <Content Include="Content\themes\base\jquery.ui.all.css" />
-    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
-    <Content Include="Content\themes\base\jquery.ui.base.css" />
-    <Content Include="Content\themes\base\jquery.ui.button.css" />
-    <Content Include="Content\themes\base\jquery.ui.core.css" />
-    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
-    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
-    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
-    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
-    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
-    <Content Include="Content\themes\base\jquery.ui.slider.css" />
-    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
-    <Content Include="Content\themes\base\jquery.ui.theme.css" />
-    <Content Include="DBScripts\Inserts.sql" />
-    <Content Include="DBScripts\Tables.sql" />
     <Content Include="Global.asax" />
     <None Include="Controllers\Account\Login.spark" />
     <None Include="Controllers\Home\_header.spark" />
@@ -202,11 +137,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Model\YouGrade.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>YouGrade.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="YouGradeRegistry.cs" />
@@ -217,12 +147,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Model\YouGrade.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>YouGrade.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
