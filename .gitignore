@@ -54,3 +54,4 @@ src/packages
 repositories.config
 results
 bottles.cmd
+/src/YouGrade/fubu.auth.config
