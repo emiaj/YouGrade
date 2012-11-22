@@ -59,8 +59,20 @@
     <Reference Include="FubuMVC.Core.View">
       <HintPath>..\packages\FubuMVC.Core.View.0.9.9.60\lib\net40\FubuMVC.Core.View.dll</HintPath>
     </Reference>
+    <Reference Include="FubuMVC.Diagnostics">
+      <HintPath>..\packages\FubuMVC.Diagnostics.0.1.0.132\lib\net40\FubuMVC.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.JQueryUI">
+      <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.152\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Media">
+      <HintPath>..\packages\FubuMVC.Media.0.9.5.242\lib\net40\FubuMVC.Media.dll</HintPath>
+    </Reference>
     <Reference Include="FubuMVC.Navigation">
       <HintPath>..\packages\FubuMVC.Navigation.0.9.0.15\lib\net40\FubuMVC.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.SlickGrid">
+      <HintPath>..\packages\FubuMVC.SlickGrid.0.0.0.169\lib\net40\FubuMVC.SlickGrid.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.Spark">
       <HintPath>..\packages\FubuMVC.Spark.0.9.9.60\lib\net40\FubuMVC.Spark.dll</HintPath>
