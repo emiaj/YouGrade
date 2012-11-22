@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web.Routing;
 using FubuMVC.Core;
 using FubuMVC.StructureMap;
 
@@ -11,8 +10,8 @@ namespace YouGrade
         {
             FubuApplication
                 .For<YouGradeRegistry>()
-                .StructureMapObjectFactory(x => x.AddRegistry<IoCRegistry>())
-                .Bootstrap(RouteTable.Routes);
+                .StructureMapObjectFactory()
+                .Bootstrap();
         }
     }
 }
