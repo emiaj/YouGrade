@@ -134,14 +134,21 @@
     <Content Include="YouGrade.script.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Home\HomeEndpoint.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Policies\Asset\IncludeBoostrapSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="YouGradeRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Features\Home\Home.spark" />
+    <None Include="Features\LogIn\LogIn.spark" />
+    <None Include="Shared\LogInMaster.spark" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

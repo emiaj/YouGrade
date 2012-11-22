@@ -1,0 +1,3 @@
+﻿<use master="LogInMaster"/>
+<viewdata model="FubuMVC.Authentication.LoginRequest"/>
+Hello World
