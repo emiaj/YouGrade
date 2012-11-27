@@ -3,6 +3,7 @@ using FubuMVC.Authentication;
 using FubuMVC.Authentication.Tickets.Basic;
 using FubuMVC.Core;
 using FubuMVC.Core.UI;
+using FubuMVC.Localization;
 using FubuMVC.Navigation;
 using YouGrade.Features.Home;
 using YouGrade.Policies.Asset;
@@ -49,7 +50,9 @@ namespace YouGrade
                 x => x.Editors.If(r => r.Accessor.InnerProperty.Name.Contains("Password"))
                          .ModifyWith(r => r.CurrentTag.Attr("type", "password")));
 
+            Import<DefaultHtmlConventions>(x => x.Labels.Always.ModifyWith(e => e.CurrentTag.Text(e.Accessor.ToHeader())));
 
+            Import<BasicLocalizationSupport>();
 
         }
     }
