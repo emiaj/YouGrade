@@ -105,21 +105,11 @@ task :storyteller => [:compile] do
   storyteller("Storyteller.xml output/st-results.htm")
 end
 
-desc "Set up the virtual directories for the HelloWorld applications"
-task :virtual_dir => [:compile] do
-  fubu("createvdir src/FubuMVC.HelloWorld helloworld")
-  fubu("createvdir src/FubuMVC.HelloFubuSpark hellofubuspark")
-end
-
 desc "ZIPs up the build results"
 zip :package do |zip|
 	zip.directories_to_zip = [props[:stage]]
 	zip.output_file = 'fubumvc.zip'
 	zip.output_path = [props[:artifacts]]
-end
-desc "Bundles up the packaged content in FubuFastPack"
-task :bundle_getting_started do
-  fubu("assembly-pak src/FubuMVC.GettingStarted -projfile FubuMVC.GettingStarted.csproj")
 end
 
 def self.bottles(args)
