@@ -1,14 +1,14 @@
 ﻿<use master="LogInMaster"/>
 <viewdata model="FubuMVC.Authentication.LoginRequest"/>
 <content:titlecontent>
-  LogIn
+  Log In
 </content:titlecontent>
 <fieldset id="login-form">
   <form model="Model">
   <editor for="UserName"/>
   <editor for="Password"/>
   <div class="btn-group">
-    <button class="btn btn-primary">Log On</button>
+    <button class="btn btn-primary">Log In</button>
   </div>
   </form>
 </fieldset>

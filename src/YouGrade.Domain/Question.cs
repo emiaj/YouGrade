@@ -8,20 +8,19 @@ namespace YouGrade.Domain
         protected Question()
         {
         }
-        public Question(int questionNumber, string questionText, bool multiSelect, string thumbnail)
+        public Question(int questionNumber, string questionText, string thumbnail, string videoPath)
         {
             QuestionNumber = questionNumber;
             QuestionText = questionText;
-            MultiSelect = multiSelect;
             Thumbnail = thumbnail;
+            VideoPath = videoPath;
             Alternatives = new List<Alternative>();
         }
 
         public int QuestionNumber { get; protected set; }
         public string QuestionText { get; protected set; }
-        public bool MultiSelect { get; protected set; }
         public string Thumbnail { get; protected set; }
-
+        public string VideoPath { get; protected set; }
         public List<Alternative> Alternatives { get; protected set; }
 
         public bool IsValidAnswer(int[] numbers)
