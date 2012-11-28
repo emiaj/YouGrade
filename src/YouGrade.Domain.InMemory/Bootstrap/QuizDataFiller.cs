@@ -16,7 +16,8 @@ namespace YouGrade.Domain.InMemory.Bootstrap
 
         public void Activate(IEnumerable<IPackageInfo> packages, IPackageLog log)
         {
-            var quiz = new Quiz(1, "Learning English with \"The Big Bang Theory\"", "Show your knowledge on the English language using videos from The Big Bang Theory", "en");
+            var quiz = new Quiz(1, 
+                "Learning English with \"The Big Bang Theory\"", "Show your knowledge on the English language using videos from The Big Bang Theory", "en", "http://img.youtube.com/vi/fRaUVp5DfRk/0.jpg");
 
             var question1 = new Question(1,
                 "In this episode, Sheldon proposes to Raj a variation for the classic \"Jokempo\" game: instead of \"rock-paper-scissors\", the variation is \"rock-paper-scissors-lizard-spock\". In his explanation for the game rules, Sheldon points out that paper beats Spock. How can Spock be defeated by paper?", "", "iapcKVn7DdY");
@@ -42,18 +43,18 @@ namespace YouGrade.Domain.InMemory.Bootstrap
 
 
             question2.Alternatives.Add(new Alternative(1,
-                                                         "Because instead of a miniature, Sheldon found the time machine replica to be in fact full-sized and extravagant.",
-                                                         true));
-            question2.Alternatives.Add(new Alternative(2,
-                                                         "Because Sheldon saw it wasn''t a real time machine.",
+                                                         "Howard convinced Sheldon to practice rock climbing with Kripke.",
                                                          false));
+            question2.Alternatives.Add(new Alternative(2,
+                                                         "By drawing a loop counter and an escape to the least objectionable activity.",
+                                                         true));
 
             question2.Alternatives.Add(new Alternative(3,
-                                                         "Because it was nothing like the time machine in the movie.",
+                                                         "In fact, Howard doesn't help Sheldon at all. Sheldon decides to go rock climbing by itself.",
                                                          true));
 
             question2.Alternatives.Add(new Alternative(4,
-                                                         "Because the time machine was damaged.",
+                                                         "Sheldon doesn't get out of the infinite loop. He just get a break to do some internet search before finishing the friendship algorithm path.",
                                                          false));
 
             var question3 = new Question(3,
@@ -85,7 +86,7 @@ namespace YouGrade.Domain.InMemory.Bootstrap
                                                          "Because instead of a miniature, Sheldon found the time machine replica to be in fact full-sized and extravagant.",
                                                          true));
             question4.Alternatives.Add(new Alternative(2,
-                                                         "Because Sheldon saw it wasn''t a real time machine.",
+                                                         "Because Sheldon saw it wasn't a real time machine.",
                                                          false));
 
             question4.Alternatives.Add(new Alternative(3,

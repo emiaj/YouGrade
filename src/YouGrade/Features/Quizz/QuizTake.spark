@@ -1,0 +1,40 @@
+﻿<viewdata model="YouGrade.Features.Quizz.QuizTakeViewModel"/>
+<content:titlecontent>
+  ${Model.QuizTitle}
+</content:titlecontent>
+<content:moduledescription>
+  ${FubuLocalization.StringToken.FromKeyString("Globals::Question")}
+  ${Model.Question}
+</content:moduledescription>
+<form model="Model">
+  <fieldset>
+    <legend>
+      ${Model.QuestionText}
+    </legend>
+    <div class="span12">
+      <iframe width="460" height="315" src="http://www.youtube.com/embed/${Model.VideoPath}" frameborder="0" allowfullscreen=""></iframe>
+    </div>
+    <div class="span12">
+      <hr/>
+      <for each="var alternative in Model.Alternatives">
+        <label class="radio">
+          <input type="radio" name="SelectedAlternative" value="${alternative.Number}"></input>
+          ${alternative.Number}. ${alternative.Text}
+        </label>
+      </for>
+    </div>
+    <div class="span12">
+      <hr/>
+      <test condition="Model.HasPrevious">
+        <a class="btn" token="Globals::PreviousQuestion" input="Model.Previous"/>
+      </test>
+      <a class="btn" token="Globals::ReturnToHome" type="YouGrade.Features.Home.HomeInputModel"/>
+      <test condition="Model.HasNext">
+        <button class="btn btn-primary" token="Globals::NextQuestion"/>
+      </test>
+      <else>
+        <button class="btn btn-primary" token="Globals::ViewResults"/>
+      </else>
+    </div>
+  </fieldset>
+</form>

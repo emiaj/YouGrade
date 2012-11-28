@@ -8,13 +8,14 @@ namespace YouGrade.Domain
         {
         }
 
-        public Quiz(int id, string title, string description, string language)
+        public Quiz(int id, string title, string description, string language, string thumbnail)
         {
             Questions = new List<Question>();
             Id = id;
             Title = title;
             Description = description;
             Language = language;
+            Thumbnail = thumbnail;
         }
 
         public int Id { get; protected set; }
@@ -22,6 +23,7 @@ namespace YouGrade.Domain
         public string Description { get; protected set; }
         public List<Question> Questions { get; protected set; }
         public string Language { get; protected set; }
+        public string Thumbnail { get; protected set; }
 
         public override bool Equals(object obj)
         {

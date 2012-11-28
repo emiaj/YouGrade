@@ -27,5 +27,20 @@
   <element name="service">
     this.Get[[@type]]().@property
   </element>
+  <element name="a">
+    <![CDATA[
+    this.LinkTo[[@type]]().AddClass("@class").Text(FubuLocalization.StringToken.FromKeyString("@token").ToString())
+    ]]>
+  </element>
+  <element name="a">
+    <![CDATA[
+    this.LinkTo(@input).AddClass("@class").Text(FubuLocalization.StringToken.FromKeyString("@token").ToString())
+    ]]>
+  </element>
+  <element name="button">
+    <![CDATA[
+    this.Tag("button").AddClass("@class").Text(FubuLocalization.StringToken.FromKeyString("@token").ToString())
+    ]]>
+  </element>
 
 </bindings>

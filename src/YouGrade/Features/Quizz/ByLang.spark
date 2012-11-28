@@ -1,0 +1,19 @@
+﻿<viewdata model="YouGrade.Features.Quizz.ByLangViewModel"/>
+  <ul class="thumbnails">
+    <for each="var quiz in Model.Quizzes">
+      <li class="span4">
+        <div class="thumbnail">
+          <a href="${quiz.Url}" class="thumbnail">
+            <img src="${quiz.Thumbnail}" alt=""/>
+          </a>
+          <div class="caption">
+            <h3>${quiz.Title}</h3>
+            <p>${quiz.Description}</p>
+            <p>
+              <a class="btn btn-primary" href="${quiz.Url}">${FubuLocalization.StringToken.FromKeyString("Globals::TakeTest")}</a>
+            </p>
+          </div>
+        </div>
+      </li>
+    </for>
+  </ul>

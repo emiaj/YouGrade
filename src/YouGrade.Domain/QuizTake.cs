@@ -10,7 +10,7 @@ namespace YouGrade.Domain
         {
         }
 
-        public QuizTake(Guid id, int quizId, string userId, int questions)
+        public QuizTake(string id, int quizId, string userId, int questions)
         {
             Id = id;
             QuizId = quizId;
@@ -20,7 +20,7 @@ namespace YouGrade.Domain
             Answers = new List<Answer>();
         }
 
-        public Guid Id { get; protected set; }
+        public string Id { get; protected set; }
         public int QuizId { get; protected set; }
         public string UserId { get; protected set; }
         public DateTime DateTime { get; protected set; }

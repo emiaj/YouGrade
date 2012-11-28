@@ -1,5 +1,24 @@
 ﻿<viewdata model="YouGrade.Features.Home.HomeViewModel"/>
 <content:titlecontent>
-Home
-</content>
-Home Page
+  ${FubuLocalization.StringToken.FromKeyString("Globals::Home")}
+</content:titlecontent>
+<div class="row">
+  <div class="span12">
+    <ul class="nav nav-tabs">
+      <for each="var language in Model.Languages">
+        <li class="active?{languageIndex == 0}">
+          <a href="#${language.Name}" data-toggle="tab">
+            ${language.Title}
+          </a>
+        </li>
+      </for>
+    </ul>
+    <div class="tab-content">
+      <for each="var language in Model.Languages">
+        <div id="${language.Name}" class="tab-pane active?{languageIndex == 0}">
+          ${this.Partial(language.TargetModel)}
+        </div>
+      </for>
+    </div>
+  </div>
+</div>

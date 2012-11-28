@@ -18,5 +18,10 @@ namespace YouGrade.Domain.InMemory.Services
         {
             return _quizzes.Where(x => x.Language.Equals(language, StringComparison.InvariantCultureIgnoreCase));
         }
+
+        public Quiz GetById(int id)
+        {
+            return _quizzes.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

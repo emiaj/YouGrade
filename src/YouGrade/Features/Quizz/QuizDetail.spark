@@ -1,0 +1,15 @@
+﻿<viewdata model="YouGrade.Features.Quizz.QuizDetailViewModel"/>
+<content:titlecontent>
+  ${Model.Title}
+</content:titlecontent>
+<content:moduledescription>
+  ${Model.Description}
+</content:moduledescription>
+<div class="span12">
+  <form model="Model">
+    <img src="${Model.Thumbnail}" alt=""/>
+    <hr/>
+    <button class="btn btn-primary" token="Globals::BeginTest"/>
+    <a class="btn" type="YouGrade.Features.Home.HomeInputModel" token="Globals::GoBack"/>
+  </form>
+</div>
