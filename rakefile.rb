@@ -73,9 +73,9 @@ end
 desc "Compiles the app"
 task :compile => [:restore_if_missing, :clean, :version] do
   MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/YouGrade.sln', :clrversion => CLR_TOOLS_VERSION
-  #AspNetCompilerRunner.compile :webPhysDir => "src/YouGrade", :webVirDir => "localhost/xyzzyplugh"
+  AspNetCompilerRunner.compile :webPhysDir => "src/YouGrade", :webVirDir => "localhost/xyzzyplugh"
   
-  #copyOutputFiles "src/YouGrade/bin/#{COMPILE_TARGET}", "*.{dll,pdb}", props[:stage]
+  copyOutputFiles "src/YouGrade/bin/#{COMPILE_TARGET}", "*.{dll,pdb}", props[:stage]
 end
 
 def copyOutputFiles(fromDir, filePattern, outDir)
@@ -128,8 +128,17 @@ task :run_st do
   sh st 
 end
 
+desc "Merge missing localization"
+task :merge_localization do
+	localization("merge src/YouGrade")
+end
+
 def self.fubu(args)
   fubu = Platform.runtime("src/fubu/bin/#{COMPILE_TARGET}/fubu.exe")
   sh "#{fubu} #{args}"
 end
 
+def self.localization(args)
+	localization = Platform.runtime(Nuget.tool("FubuLocalization", "localizer.exe"))
+	sh "#{localization} #{args}"
+end

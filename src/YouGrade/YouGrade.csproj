@@ -160,6 +160,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="en-US.locale.config" />
     <None Include="Features\Home\Home.spark" />
     <None Include="Features\LogIn\LogIn.spark" />
     <None Include="Shared\Application.spark" />
