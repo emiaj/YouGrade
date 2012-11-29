@@ -1,1 +1,50 @@
 ﻿<viewdata model="YouGrade.Features.Quizz.QuizTakeResultsViewModel"/>
+<content:titlecontent>
+  ${FubuLocalization.StringToken.FromKeyString("Globals::QuizTakeResults")} ::: ${Model.Title}
+</content:titlecontent>
+<content:moduledescription>
+  ${Model.Description}
+</content:moduledescription>
+<div class="span12">
+  <div class="row">
+    <div class="span12">
+      <img src="${Model.Thumbnail}" alt=""/>
+    </div>
+  </div>
+  <hr/>
+  <div class="row">
+    <div class="span12">
+      <div class="alert alert-block alert-error?{!Model.Approved} alert-success?{Model.Approved}">
+        <h4 if="Model.Approved">
+          ${FubuLocalization.StringToken.FromKeyString("Globals::QuizApprovedMessage")}
+        </h4>
+        <h4 if="!Model.Approved">
+          ${FubuLocalization.StringToken.FromKeyString("Globals::QuizNotApprovedMessage")}
+        </h4>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4">
+      <label>
+        ${FubuLocalization.StringToken.FromKeyString("Globals::CorrectAnswers")}: (${Model.CorrectAnswers})
+        <div class="progress progress-success">
+          <div class="bar" style="width:${Model.PercentageCorrect}%"></div>
+        </div>
+      </label>
+      <label>
+        ${FubuLocalization.StringToken.FromKeyString("Globals::IncorrectAnswers")}: (${Model.IncorrectAnswers})
+        <div class="progress progress-danger">
+          <div class="bar" style="width:${Model.PercentageIncorrect}%"></div>
+        </div>
+      </label>
+    </div>
+  </div>
+  <hr/>
+  <div class="row">
+    <div class="span12">
+      <a class="btn btn-info" input="Model.RetakeQuizModel" token="Globals::RetakeQuiz"/>
+      <a class="btn btn-success" type="YouGrade.Features.Home.HomeInputModel" token="Globals::ReturnToHome"/>
+    </div>
+  </div>
+</div>

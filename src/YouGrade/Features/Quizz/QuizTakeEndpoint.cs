@@ -2,6 +2,8 @@
 using System.Linq;
 using FubuMVC.Core;
 using FubuMVC.Core.Continuations;
+using FubuMVC.Core.Security;
+using YouGrade.Domain;
 using YouGrade.Domain.Services;
 
 namespace YouGrade.Features.Quizz
@@ -9,10 +11,16 @@ namespace YouGrade.Features.Quizz
     public class QuizTakeEndpoint
     {
         private readonly IQuizService _quizService;
+        private readonly IQuizTakeFactory _quizTakeFactory;
+        private readonly ISecurityContext _securityContext;
+        private readonly IQuizTakeService _quizTakeService;
 
-        public QuizTakeEndpoint(IQuizService quizService)
+        public QuizTakeEndpoint(IQuizService quizService, IQuizTakeFactory quizTakeFactory, ISecurityContext securityContext, IQuizTakeService quizTakeService)
         {
             _quizService = quizService;
+            _quizTakeFactory = quizTakeFactory;
+            _securityContext = securityContext;
+            _quizTakeService = quizTakeService;
         }
 
         public QuizTakeViewModel Get(QuizTakeInputModel input)
@@ -43,6 +51,11 @@ namespace YouGrade.Features.Quizz
         public FubuContinuation Post(QuizTakeViewModel input)
         {
             var quiz = _quizService.GetById(input.QuizId);
+            var take = _quizTakeFactory.GetOrCreate(input.TakeId, input.QuizId, _securityContext.CurrentUser.Identity.Name);
+            var answer = new Answer(input.Question, quiz.IsAnswer(input.Question, input.SelectedAlternative), input.SelectedAlternative);
+
+            take.UpdateAnswer(answer);
+            
             if (quiz.Questions.Any(x => x.QuestionNumber == input.Question + 1))
             {
                 return FubuContinuation.RedirectTo(new QuizTakeInputModel
@@ -52,6 +65,9 @@ namespace YouGrade.Features.Quizz
                         TakeId = input.TakeId
                     });
             }
+            
+            _quizTakeService.Save(take);
+
             return FubuContinuation.RedirectTo(new QuizTakeResultsInputModel
                 {
                     QuizId = input.QuizId,

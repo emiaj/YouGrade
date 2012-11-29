@@ -1,5 +1,7 @@
-﻿<div class="container navbar navbar-fixed-bottom">
-  <footer class="footer">
-    <p class="pull-right">&copy; YouGrade 2012 | Beta.</p>
-  </footer>
+﻿<div class="container navbar">
+  <div class="span12">
+    <footer class="footer">
+      <p class="pull-right">&copy; YouGrade 2012 | Beta.</p>
+    </footer>
+  </div>
 </div>

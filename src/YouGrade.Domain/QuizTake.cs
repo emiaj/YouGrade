@@ -12,6 +12,8 @@ namespace YouGrade.Domain
 
         public QuizTake(string id, int quizId, string userId, int questions)
         {
+            if (id == null) throw new ArgumentNullException("id");
+            if (userId == null) throw new ArgumentNullException("userId");
             Id = id;
             QuizId = quizId;
             UserId = userId;
@@ -29,15 +31,36 @@ namespace YouGrade.Domain
         public int CorrectAnswers { get { return Answers.Count(x => x.Correct); } }
         public int IncorrectAnswers { get { return Answers.Count(x => !x.Correct); } }
 
-        public QuizTake Reset()
+        public void UpdateAnswer(Answer answer)
         {
-            return new QuizTake
+            lock (Answers)
+            {
+                if (Answers.Contains(answer))
                 {
-                    Id = Id,
-                    Questions = Questions,
-                    QuizId = QuizId,
-                    UserId = UserId
-                };
+                    Answers.Remove(answer);
+                }
+                Answers.Add(answer);
+            }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != typeof (QuizTake)) return false;
+            return Equals((QuizTake) obj);
+        }
+
+        public bool Equals(QuizTake other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Equals(other.Id, Id);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
         }
     }
 }

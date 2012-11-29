@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace YouGrade.Domain
 {
@@ -24,6 +25,13 @@ namespace YouGrade.Domain
         public List<Question> Questions { get; protected set; }
         public string Language { get; protected set; }
         public string Thumbnail { get; protected set; }
+
+        public bool IsAnswer(int question,int alternative)
+        {
+            return Questions.First(x => x.QuestionNumber == question)
+                .Alternatives.Where(x => x.IsCorrect)
+                .Any(x => x.AlternativeNumber == alternative);
+        }
 
         public override bool Equals(object obj)
         {

@@ -51,6 +51,8 @@
     <Compile Include="Quiz.cs" />
     <Compile Include="QuizTake.cs" />
     <Compile Include="Services\IQuizService.cs" />
+    <Compile Include="Services\IQuizTakeFactory.cs" />
+    <Compile Include="Services\IQuizTakeService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
