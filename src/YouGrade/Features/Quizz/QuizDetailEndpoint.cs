@@ -35,7 +35,7 @@ namespace YouGrade.Features.Quizz
                     Question = 1,
                     QuizId = input.Id,
                     TakeId = _generator.Generate()
-                });
+                }, "GET");
         }
 
     }

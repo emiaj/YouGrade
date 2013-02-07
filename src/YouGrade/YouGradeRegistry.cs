@@ -18,6 +18,7 @@ namespace YouGrade
 
             Routes
                 .ConstrainToHttpMethod(x => x.Method.Name == "Get", "GET")
+                .ConstrainToHttpMethod(x => x.Method.Name == "Post", "POST")
                 .IgnoreControllerNamespaceEntirely()
                 .IgnoreClassSuffix("Endpoint")
                 .IgnoreMethodsNamed("Get")
