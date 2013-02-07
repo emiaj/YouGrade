@@ -30,7 +30,7 @@ namespace YouGrade.Features.Quizz
             var alternatives = question.Alternatives.Select(x => new QuizTakeAlternative
                 {
                     Number = x.AlternativeNumber, Text = x.AlternativeText
-                }).ToList();
+                });
             return new QuizTakeViewModel
                 {
                     TakeId = input.TakeId,
@@ -48,7 +48,7 @@ namespace YouGrade.Features.Quizz
                 };
         }
 
-        public FubuContinuation Post(QuizTakeInputModel input)
+        public FubuContinuation Post(QuizTakeViewModel input)
         {
             var quiz = _quizService.GetById(input.QuizId);
             var take = _quizTakeFactory.GetOrCreate(input.TakeId, input.QuizId, _securityContext.CurrentUser.Identity.Name);
@@ -58,13 +58,14 @@ namespace YouGrade.Features.Quizz
             
             if (quiz.Questions.Any(x => x.QuestionNumber == input.Question + 1))
             {
-                var destination = new QuizTakeInputModel
+                return FubuContinuation.RedirectTo(new QuizTakeInputModel
                     {
-                        Question = input.Question + 1, QuizId = input.QuizId, TakeId = input.TakeId
-                    };
-                return FubuContinuation.RedirectTo(destination, "GET");
+                        Question = input.Question + 1,
+                        QuizId = input.QuizId,
+                        TakeId = input.TakeId
+                    });
             }
-
+            
             _quizTakeService.Save(take);
 
             return FubuContinuation.RedirectTo(new QuizTakeResultsInputModel
@@ -85,6 +86,10 @@ namespace YouGrade.Features.Quizz
         [RouteInput]
         public int Question { get; set; }
 
+    }
+
+    public class QuizTakeViewModel : QuizTakeInputModel
+    {
         public string QuizTitle { get; set; }
         public string QuizDescription { get; set; }
         public bool HasNext { get; set; }
@@ -95,32 +100,9 @@ namespace YouGrade.Features.Quizz
         public string VideoPath { get; set; }
 
         public int SelectedAlternative { get; set; }
-    }
-
-    public class QuizTakeViewModel : QuizTakeInputModel
-    {
-        public List<QuizTakeAlternative> Alternatives { get; set; }
-
-        public QuizTakeInputModel ToInputModel()
-        {
-            return new QuizTakeInputModel
-                {
-                    TakeId = TakeId,
-                    QuizId = QuizId,
-                    QuizDescription = QuizDescription,
-                    QuizTitle = QuizTitle,
-                    Question = Question,
-                    QuestionText = QuestionText,
-                    VideoPath = VideoPath,
-                    HasPrevious = HasPrevious,
-                    HasNext = HasNext,
-                    Previous = Previous,
-                    Next = Next,
-                };
-        }
+        public IEnumerable<QuizTakeAlternative> Alternatives { get; set; }
 
     }
-
 
     public class QuizTakeAlternative
     {
