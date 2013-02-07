@@ -9,7 +9,7 @@
   <form model="Model">
     <img src="${Model.Thumbnail}" alt=""/>
     <hr/>
-    <button class="btn btn-primary" token="Globals::BeginTest"/>
     <a class="btn" type="YouGrade.Features.Home.HomeInputModel" token="Globals::GoBack"/>
+    <button class="btn btn-primary" token="Globals::BeginTest"/>
   </form>
 </div>
