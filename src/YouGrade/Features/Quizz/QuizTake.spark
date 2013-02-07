@@ -6,7 +6,7 @@
   ${FubuLocalization.StringToken.FromKeyString("Globals::Question")}
   ${Model.Question}
 </content:moduledescription>
-<form model="Model">
+<form model="Model.ToInputModel()">
   <fieldset>
     <legend>
       ${Model.QuestionText}
