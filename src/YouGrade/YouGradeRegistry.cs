@@ -1,6 +1,5 @@
 ﻿using FubuLocalization;
 using FubuMVC.Authentication;
-using FubuMVC.Authentication.Tickets.Basic;
 using FubuMVC.Core;
 using FubuMVC.Core.UI;
 using FubuMVC.Localization;
@@ -48,7 +47,7 @@ namespace YouGrade
 
             Services(x => x.SetServiceIfNone<IRandomStringGenerator, RandomStringGenerator>());
 
-            Import<ApplyAuthentication>(x => x.Exclude(chain => chain.Route != null && chain.Route.Pattern != null && chain.Route.Pattern.StartsWith("_")));
+            AlterSettings<AuthenticationSettings>(x => x.ExcludeChains.ChainMatches(chain => chain.Route != null && chain.Route.Pattern != null && chain.Route.Pattern.StartsWith("_")));
             
             Import<DefaultHtmlConventions>(
                 x => x.Editors.If(r => r.Accessor.InnerProperty.Name.Contains("Password"))
